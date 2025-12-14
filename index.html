@@ -59,6 +59,8 @@
         <script src="data/TrunkDrainageO1_25.js"></script>
         <script src="data/TrunkDrainageO16_26.js"></script>
         <script src="data/O16PriorityLine800m_27.js"></script>
+        <script src="data/AirportRoadsAAIA10km_28.js"></script>
+        <script src="data/WarshadahaRoad10km_29.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -303,16 +305,16 @@
         function style_Markets_5_0() {
             return {
                 pane: 'pane_Markets_5',
-                radius: 8.0,
+                radius: 7.999999999999998,
                 opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
+                color: 'rgba(31,120,180,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(72,123,182,1.0)',
+                fillColor: 'rgba(244,247,84,1.0)',
                 interactive: true,
             }
         }
@@ -1886,7 +1888,148 @@
         });
         bounds_group.addLayer(layer_O16PriorityLine800m_27);
         map.addLayer(layer_O16PriorityLine800m_27);
+        function pop_AirportRoadsAAIA10km_28(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">city</th>\
+                        <td class="visible-with-data" id="city">' + (feature.properties['city'] !== null ? autolinker.link(String(feature.properties['city']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">package</th>\
+                        <td class="visible-with-data" id="package">' + (feature.properties['package'] !== null ? autolinker.link(String(feature.properties['package']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">subproject</th>\
+                        <td class="visible-with-data" id="subproject">' + (feature.properties['subproject'] !== null ? autolinker.link(String(feature.properties['subproject']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">status</th>\
+                        <td class="visible-with-data" id="status">' + (feature.properties['status'] !== null ? autolinker.link(String(feature.properties['status']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">length_km</th>\
+                        <td class="visible-with-data" id="length_km">' + (feature.properties['length_km'] !== null ? autolinker.link(String(feature.properties['length_km']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_AirportRoadsAAIA10km_28_0() {
+            return {
+                pane: 'pane_AirportRoadsAAIA10km_28',
+                opacity: 1,
+                color: 'rgba(0,70,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AirportRoadsAAIA10km_28');
+        map.getPane('pane_AirportRoadsAAIA10km_28').style.zIndex = 428;
+        map.getPane('pane_AirportRoadsAAIA10km_28').style['mix-blend-mode'] = 'normal';
+        var layer_AirportRoadsAAIA10km_28 = new L.geoJson(json_AirportRoadsAAIA10km_28, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AirportRoadsAAIA10km_28',
+            layerName: 'layer_AirportRoadsAAIA10km_28',
+            pane: 'pane_AirportRoadsAAIA10km_28',
+            onEachFeature: pop_AirportRoadsAAIA10km_28,
+            style: style_AirportRoadsAAIA10km_28_0,
+        });
+        bounds_group.addLayer(layer_AirportRoadsAAIA10km_28);
+        map.addLayer(layer_AirportRoadsAAIA10km_28);
+        function pop_WarshadahaRoad10km_29(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">city</th>\
+                        <td class="visible-with-data" id="city">' + (feature.properties['city'] !== null ? autolinker.link(String(feature.properties['city']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">package</th>\
+                        <td class="visible-with-data" id="package">' + (feature.properties['package'] !== null ? autolinker.link(String(feature.properties['package']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">subproject</th>\
+                        <td class="visible-with-data" id="subproject">' + (feature.properties['subproject'] !== null ? autolinker.link(String(feature.properties['subproject']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">status</th>\
+                        <td class="visible-with-data" id="status">' + (feature.properties['status'] !== null ? autolinker.link(String(feature.properties['status']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">length_km</th>\
+                        <td class="visible-with-data" id="length_km">' + (feature.properties['length_km'] !== null ? autolinker.link(String(feature.properties['length_km']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_WarshadahaRoad10km_29_0() {
+            return {
+                pane: 'pane_WarshadahaRoad10km_29',
+                opacity: 1,
+                color: 'rgba(0,70,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_WarshadahaRoad10km_29');
+        map.getPane('pane_WarshadahaRoad10km_29').style.zIndex = 429;
+        map.getPane('pane_WarshadahaRoad10km_29').style['mix-blend-mode'] = 'normal';
+        var layer_WarshadahaRoad10km_29 = new L.geoJson(json_WarshadahaRoad10km_29, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_WarshadahaRoad10km_29',
+            layerName: 'layer_WarshadahaRoad10km_29',
+            pane: 'pane_WarshadahaRoad10km_29',
+            onEachFeature: pop_WarshadahaRoad10km_29,
+            style: style_WarshadahaRoad10km_29_0,
+        });
+        bounds_group.addLayer(layer_WarshadahaRoad10km_29);
+        map.addLayer(layer_WarshadahaRoad10km_29);
         var overlaysTree = [
+        {label: '<b>Read Investments - Roads</b>',  selectAllCheckbox: true, children: [
+            {label: '<img src="legend/WarshadahaRoad10km_29.png" /> Warshadaha Road (10 km)', layer: layer_WarshadahaRoad10km_29},
+            {label: '<img src="legend/AirportRoadsAAIA10km_28.png" /> Airport Roads  - AAIA (10 km)', layer: layer_AirportRoadsAAIA10km_28},]},
         {label: '<b>Ready Investments - Trunk Drainage</b>',  selectAllCheckbox: true, children: [
             {label: '<img src="legend/O16PriorityLine800m_27.png" /> O-16 Priority Line (800m)', layer: layer_O16PriorityLine800m_27},
             {label: '<img src="legend/TrunkDrainageO16_26.png" /> Trunk Drainage O-16', layer: layer_TrunkDrainageO16_26},
@@ -2271,15 +2414,41 @@
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27]);
+        var i = 0;
+        layer_AirportRoadsAAIA10km_28.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['subproject'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['subproject']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_AirportRoadsAAIA10km_28'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_WarshadahaRoad10km_29.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['subproject'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['subproject']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_WarshadahaRoad10km_29'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27,layer_AirportRoadsAAIA10km_28,layer_WarshadahaRoad10km_29]);
         map.on("zoomend", function(){
-            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27]);
+            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27,layer_AirportRoadsAAIA10km_28,layer_WarshadahaRoad10km_29]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27]);
+            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27,layer_AirportRoadsAAIA10km_28,layer_WarshadahaRoad10km_29]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27]);
+            resetLabels([layer_Markets_5,layer_SigalePond_6,layer_KeysaneyRoad_7,layer_NasiibBundoRoad_8,layer_ViaRomeRoad_9,layer_MartintoDistrictHQRoad_10,layer_3Geed2Roads_11,layer_MadinaHospitalRoad1km_12,layer_KalkaalRoad2km_13,layer_DaynileRoad2kmDualCarriageway_14,layer_TunbuluqWaterCatchment_15,layer_HilacWaterCatchment_16,layer_BondhereWaterCatchment_17,layer_15MayWaterCatchment_18,layer_CaymiskaRoad023km_19,layer_TrunkDrainageO6_20,layer_TrunkDrainageO5_21,layer_TrunkDrainageO4_22,layer_TrunkDrainageO3_23,layer_TrunkDrainageO2_24,layer_TrunkDrainageO1_25,layer_TrunkDrainageO16_26,layer_O16PriorityLine800m_27,layer_AirportRoadsAAIA10km_28,layer_WarshadahaRoad10km_29]);
         });
         </script>        
     </body>
